@@ -45,7 +45,7 @@ In order to evaluate each proposal, the teams must submit in the form the follow
   - Rename the ZIP file as `nameTeam_numProp_MVC27.zip`.
   - Please note the ZIP file is only a backup. Evaluation will mainly be based on the individual submitted files.
 
-*Please avoid spaces and special characters all file names.*
+*Please avoid spaces and special characters in all file names.*
 
 ## Bibliography
 
