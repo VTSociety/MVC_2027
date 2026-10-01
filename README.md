@@ -15,11 +15,12 @@ Participants are therefore invited to develop an integrated strategy that coordi
 3. enhancing **infrastructure utilization** by maximizing the energy received from DWPT; and
 4. improving **driving comfort** by minimizing deviations in lateral acceleration.
 
-## Team registration
-Registration form will be available soon.
-
-## Submission of proposals
-Submission form will be available soon.
+## Important dates and submission forms
+- Registration deadline: 31 January 2027.
+  - Registration form will be available soon.
+- Submission deadline: 1 March 2027
+  - Submission form will be available soon.
+- Results: 31 March 2027
 
 ## Rules and instructions
  
