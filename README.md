@@ -17,9 +17,9 @@ Participants are therefore invited to develop an integrated strategy that coordi
 
 ## Important dates and submission forms
 - Registration deadline: 31 January 2027.
-  - Registration form will be available soon.
+  - Register your team for the challenge using [Registration form](https://docs.google.com/forms/d/e/1FAIpQLScn9QM5dTbPJO58kUCpS6MpwM0aLW2bU7g9Atntza7pp8_2uQ/viewform).
 - Submission deadline: 1 March 2027
-  - Submission form will be available soon.
+  - Submit your poposals using the [Submission form](https://docs.google.com/forms/d/e/1FAIpQLSdaAZOpiFS4j9ZSh1LC5OPYZo41tUQKE3v68uK8hWsC88eRkA/viewform).
 - Results: 31 March 2027
 
 ## Rules and instructions

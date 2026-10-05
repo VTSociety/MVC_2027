@@ -23,7 +23,7 @@ driving_condition; % driving condition
 meso_para;         % parameters of energy management & motion control
 
 % 4. Weighting of scoring function
-sigma = [12 200 30 100];
+sigma = [1 60 3 10];
 
 % 5. Run the simulation
 simout = sim('MVC27_Sim.slx');

@@ -1,5 +1,5 @@
-function [sys,x0,str,ts] = sfuntmpl(t,x,u,flag)
-%SFUNTMPL General M-file S-function template
+function LambdaMethod(block)
+%LambdaMethod Level-2 S-function
 %      2D Tire Model Based on Lambda-Method.    
 %      This S-Function is to caluclate the
 %      Longtitudal (Driving) Force Fx 
@@ -10,229 +10,123 @@ function [sys,x0,str,ts] = sfuntmpl(t,x,u,flag)
 %      Elsevier Science, 2005.
 %      
 %      and based on the "Lambda Method", proposed by Y. Horiuchi.
-%      in "A Proposition of the Simple Tire Model for the Vehicle Stability 
-%          Assist System," Proceedings of Spring Congress
-%          of Society of Automotive Engineers of Japan, No. 64-98 (1998).
+%      in "A Proposition of the Simple Tire Model for the Vehicle Stability Assist System," 
+%      Proceedings of Spring Congress
+%      of Society of Automotive Engineers of Japan, No. 64-98 (1998).
 %
-switch flag,
 
-  %%%%%%%%%%%%%%%%%%
-  % Initialization %
-  %%%%%%%%%%%%%%%%%%
-  case 0,
-    [sys,x0,str,ts]=mdlInitializeSizes;
+setup(block);
 
-  %%%%%%%%%%%%%%%
-  % Derivatives %
-  %%%%%%%%%%%%%%%
-  case 1,
-    sys=mdlDerivatives(t,x,u);
+% =========================================================================
+% S-Function Initial Setup
+% =========================================================================
+function setup(block)
 
-  %%%%%%%%%%
-  % Update %
-  %%%%%%%%%%
-  case 2,
-    sys=mdlUpdate(t,x,u);
+  % Register number of input and output ports
+  block.NumInputPorts  = 1; % 1 vector input port (width 5)
+  block.NumOutputPorts = 1; % 1 vector output port (width 3)
 
-  %%%%%%%%%%%
-  % Outputs %
-  %%%%%%%%%%%
-  case 3,
-    sys=mdlOutputs(t,x,u);
+    % Set default port properties to dynamic
+  block.SetPreCompInpPortInfoToDynamic;
+  block.SetPreCompOutPortInfoToDynamic;
 
-  %%%%%%%%%%%%%%%%%%%%%%%
-  % GetTimeOfNextVarHit %
-  %%%%%%%%%%%%%%%%%%%%%%%
-  case 4,
-    sys=mdlGetTimeOfNextVarHit(t,x,u);
+  % Input port configuration: [V, Vw, alpha, mu, Fz]
+  block.InputPort(1).Dimensions        = 5;
+  block.InputPort(1).DatatypeID        = 0; % double
+  block.InputPort(1).Complexity        = 'Real';
+  block.InputPort(1).DirectFeedthrough = true;
 
-  %%%%%%%%%%%%%
-  % Terminate %
-  %%%%%%%%%%%%%
-  case 9,
-    sys=mdlTerminate(t,x,u);
+  % Output port configuration: [Fx, Fy, lambda_x]
+  block.OutputPort(1).Dimensions       = 3;
+  block.OutputPort(1).DatatypeID       = 0; % double
+  block.OutputPort(1).Complexity       = 'Real';
 
-  %%%%%%%%%%%%%%%%%%%%
-  % Unexpected flags %
-  %%%%%%%%%%%%%%%%%%%%
-  otherwise
-    error(['Unhandled flag = ',num2str(flag)]);
+  % Block parameters (no dialog parameters)
+  block.NumDialogPrms     = 0;
 
-end
+  % Continuous sample time [0, 0]
+  block.SampleTimes = [0 0];
 
-% end sfuntmpl
+  % Register simulation methods
+  block.SimStateCompliance = 'DefaultSimState';
+  block.RegBlockMethod('Outputs',   @Outputs);
+  block.RegBlockMethod('Terminate', @Terminate);
 
-%
-%=============================================================================
-% mdlInitializeSizes
-% Return the sizes, initial conditions, and sample times for the S-function.
-%=============================================================================
-%
-function [sys,x0,str,ts]=mdlInitializeSizes
+% =========================================================================
+% Compute Outputs
+% =========================================================================
+function Outputs(block)
 
-%
-% call simsizes for a sizes structure, fill it in and convert it to a
-% sizes array.
-%
-% Note that in this example, the values are hard coded.  This is not a
-% recommended practice as the characteristics of the block are typically
-% defined by the S-function parameters.
-%
-sizes = simsizes;
+  % Inputs: u = [V, Vw, alpha, mu, Fz]
+  u     = block.InputPort(1).Data;
+  V     = u(1);
+  Vw    = u(2);
+  alpha = u(3);
+  mu    = u(4);
+  Fz    = u(5);
 
-sizes.NumContStates  = 0;
-sizes.NumDiscStates  = 0;
-sizes.NumOutputs     = 3;
-sizes.NumInputs      = 5;
-sizes.DirFeedthrough = 1;
-sizes.NumSampleTimes = 1;   % at least one sample time is needed
+  abs_V = abs(V);
+  
+  if (abs_V < 0.05)
+      if (abs(Vw) < 0.05)
+          lambda_x = 0;
+          Fx       = 0;
+          Fy       = 0;
+      else
+          lambda_x = 1.0;
+          
+          % Magic Formula for Fx
+          B    = 10; C = 1.9; D = 1; E = 0.97;
+          tmp1 = B * (1-E) * 1 + E * atan(B*1);
+          tmp2 = C * atan(tmp1);
+          Fx   = D * sin(tmp2);
 
-sys = simsizes(sizes);
-
-%
-% initialize the initial conditions
-%
-x0  = [];
-
-%
-% str is always an empty matrix
-%
-str = [];
-
-%
-% initialize the array of sample times
-%
-ts  = [0 0];
-
-% end mdlInitializeSizes
-
-%
-%=============================================================================
-% mdlDerivatives
-% Return the derivatives for the continuous states.
-%=============================================================================
-%
-function sys=mdlDerivatives(t,x,u)
-
-sys = [];
-
-% end mdlDerivatives
-
-%
-%=============================================================================
-% mdlUpdate
-% Handle discrete state updates, sample time hits, and major time step
-% requirements.
-%=============================================================================
-%
-function sys=mdlUpdate(t,x,u)
-
-sys = [];
-
-% end mdlUpdate
-
-%
-%=============================================================================
-% mdlOutputs
-% Return the block outputs.
-%=============================================================================
-%
-function sys=mdlOutputs(t,x,u)
-	V = u(1); Vw = u(2); alpha  = u(3); mu = u(4); Fz = u(5);
-	abs_V = abs(V);
-	if (abs_V < 0.05)
-        if( abs(Vw)<0.05 )   
-            lambda_x = 0;
-            Fx = 0;
-            Fy = 0;
-            sys = [Fx,Fy,lambda_x];
-            return;
-        else 
-            lambda_x = 1.0;
-            % Magic Formula for Fx
-            B = 10; C = 1.9; D = 1; E = 0.97;
-            tmp1 = B * (1-E) * 1 ...
-                    + E * atan(B*1);
-            tmp2 = C * atan(tmp1);
-            Fx    = D * sin(tmp2);
-
-            Fx = Fx*mu*Fz;
-            Fy = 0;
-            sys = [Fx,Fy,lambda_x];
-            return;
-        end
-	else 
-        K = abs(Vw)/abs_V;
-        A  = [cos(alpha), -sin(alpha); sin(alpha), cos(alpha)];
-        V_vec = A*[V,0]';
-        Vw_vec = [Vw,0]';
-        Vs = Vw_vec-V_vec;
-        lambda = Vs/max(norm(V_vec),norm(Vw_vec)); 
-        norm_lambda = norm(lambda);
-
-        if (norm_lambda>1.0) 
-            norm_lambda=1.0;
-        end
-    
-        if abs(Vs(1)) < 10^-6
-            lambda_x = 0;
-            Fx = 0;
-            Fy = 0;
-        else
-            lambda_x = Vs(1)/max( abs(V_vec(1)), abs(Vw_vec(1)) );
-            if abs(lambda_x) > 1.0
-                if sign(lambda_x)>0.0
-                    lambda_x = 1.0;
-                else
-                    lambda_x = -1.0;
-                end
-            end
+          Fx   = Fx * mu * Fz;
+          Fy   = 0;
+      end
+  else
+      A      = [cos(alpha), -sin(alpha); sin(alpha), cos(alpha)];
+      V_vec  = A * [V; 0];
+      Vw_vec = [Vw; 0];
+      Vs     = Vw_vec - V_vec;
       
-            % Magic Formula for Fx
-            B = 10; C = 1.9; D = 1; E = 0.97;
-            tmp1 = B * (1-E) * norm_lambda ...
-                    + E * atan(B*norm_lambda);
-            tmp2 = C * atan(tmp1);
-            F    = mu*Fz* D * sin(tmp2)*Vs/norm(Vs);
-            Fx   = F(1);
+      lambda      = Vs / max(norm(V_vec), norm(Vw_vec));
+      norm_lambda = norm(lambda);
 
-            % Magic Formula for Fy
-            tmp1 = B * (1-E) * norm_lambda ...
-                    + E * atan(B*norm_lambda);
-            tmp2 = C * atan(tmp1);
-            F    = mu*Fz* D * sin(tmp2)*Vs/norm(Vs);
-            Fy   = F(2); 
-        end
-	end
+      if (norm_lambda > 1.0)
+          norm_lambda = 1.0;
+      end
 
-sys = [Fx,Fy,lambda_x];
+      if abs(Vs(1)) < 1e-6
+          lambda_x = 0;
+          Fx       = 0;
+          Fy       = 0;
+      else
+          lambda_x = Vs(1) / max(abs(V_vec(1)), abs(Vw_vec(1)));
+          if abs(lambda_x) > 1.0
+              if sign(lambda_x) > 0.0
+                  lambda_x = 1.0;
+              else
+                  lambda_x = -1.0;
+              end
+          end
 
-% end mdlOutputs
+          % Magic Formula for Fx and Fy
+          B    = 10; C = 1.9; D = 1; E = 0.97;
+          tmp1 = B * (1-E) * norm_lambda + E * atan(B*norm_lambda);
+          tmp2 = C * atan(tmp1);
+          F    = mu * Fz * D * sin(tmp2) * Vs / norm(Vs);
+          
+          Fx   = F(1);
+          Fy   = F(2);
+      end
+  end
 
-%
-%=============================================================================
-% mdlGetTimeOfNextVarHit
-% Return the time of the next hit for this block.  Note that the result is
-% absolute time.  Note that this function is only used when you specify a
-% variable discrete-time sample time [-2 0] in the sample time array in
-% mdlInitializeSizes.
-%=============================================================================
-%
-function sys=mdlGetTimeOfNextVarHit(t,x,u)
+  % Assign results to output port: [Fx; Fy; lambda_x]
+  block.OutputPort(1).Data = [Fx; Fy; lambda_x];
 
-sampleTime = 1;    %  Example, set the next hit to be one second later. 
-sys = t + sampleTime;
-
-% end mdlGetTimeOfNextVarHit
-
-%
-%=============================================================================
-% mdlTerminate
-% Perform any end of simulation tasks.
-%=============================================================================
-%
-function sys=mdlTerminate(t,x,u)
-
-sys = [];
-
-% end mdlTerminate
+% =========================================================================
+% Simulation Termination (Terminate)
+% =========================================================================
+function Terminate(block)
+  % No cleanup operations required
