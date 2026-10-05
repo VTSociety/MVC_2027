@@ -26,14 +26,16 @@ Participants are therefore invited to develop an integrated strategy that coordi
  
 Important rules that the submitted proposals must satisfy for being considered valid in this competition:
 
-- The MATLAB/Simulink version used for the submitted files must be **R2022b**.
-- Participants are allowed to modify only the `meso_para.m` script and the “Energy Management & Motion Control Strategy” block provided in the simulation file.
-- All parameters provided in `sim_para.m`, as well as all sensor measurements available from the output of the “Vehicle Dynamics Model” block, may be used to develop the control strategy.
-- All other scripts and simulation blocks must not be modified. Any modifications made to scripts other than `meso_para.m` or to subsystems other than “Energy Management & Motion Control Strategy” will be discarded during the evaluation.
-- The final score will be calculated as the average of the scores obtained using the example driving cycle and a secret driving cycle.
+1. The MATLAB/Simulink version used for the submitted files must be **R2022b**.
+2. Participants are allowed to modify only the `meso_para.m` script and the “Energy Management & Motion Control Strategy” block provided in the simulation file.
+3. All parameters provided in `sim_para.m`, as well as all sensor measurements available from the output of the “Vehicle Dynamics Model” block, may be used to develop the control strategy.
+4. All other scripts and simulation blocks must not be modified. Any modifications made to scripts other than `meso_para.m` or to subsystems other than “Energy Management & Motion Control Strategy” will be discarded during the evaluation.
+5. The final score will be calculated as the average of the scores obtained using the example driving cycle and a secret driving cycle.
+6. A proposed strategy will be disqualified if the vehicle fails to complete either driving cycle (e.g., the vehicle stops before reaching the end of the driving cycle), or if the lateral position of the vehicle exceeds 5 m at any time during the simulation.
 
 Remark:
 - Please take notice of the [Discussion board](https://github.com/VTSociety/MVC_2027/discussions/categories/q-a) for Q&A. Start a new discussion if you can't find an answer to your issue.
+
 
 ## What has to be uploaded for evaluation
 
