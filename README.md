@@ -17,13 +17,12 @@ Participants are therefore invited to develop an integrated strategy that coordi
 
 ## Important dates and submission forms
 - Registration deadline: 31 January 2027.
-  - Register your team for the challenge using [Registration form](https://docs.google.com/forms/d/e/1FAIpQLScn9QM5dTbPJO58kUCpS6MpwM0aLW2bU7g9Atntza7pp8_2uQ/viewform).
+  - Register your team for the challenge using the [Registration form](https://docs.google.com/forms/d/e/1FAIpQLScn9QM5dTbPJO58kUCpS6MpwM0aLW2bU7g9Atntza7pp8_2uQ/viewform).
 - Submission deadline: 1 March 2027
-  - Submit your poposals using the [Submission form](https://docs.google.com/forms/d/e/1FAIpQLSdaAZOpiFS4j9ZSh1LC5OPYZo41tUQKE3v68uK8hWsC88eRkA/viewform).
+  - Submit your proposals using the [Submission form](https://docs.google.com/forms/d/e/1FAIpQLSdaAZOpiFS4j9ZSh1LC5OPYZo41tUQKE3v68uK8hWsC88eRkA/viewform).
 - Results: 31 March 2027
 
-## Rules and instructions
- 
+## Rules and instructions 
 Important rules that the submitted proposals must satisfy for being considered valid in this competition:
 
 1. The MATLAB/Simulink version used for the submitted files must be **R2022b**.
@@ -39,7 +38,7 @@ Remark:
 
 ## What has to be uploaded for evaluation
 
-In order to evaluate each proposal, the teams must submit in the form the following files:
+In order to evaluate each proposal, the teams must submit in the [submission form](https://docs.google.com/forms/d/e/1FAIpQLSdaAZOpiFS4j9ZSh1LC5OPYZo41tUQKE3v68uK8hWsC88eRkA/viewform) the following files:
 - **Simulation file**: `MVC27_Sim.slx` must be renamed as `nameTeam_numProp_MVC27_Sim.slx` where "numProp" must identify the proposal number of the team. If only one proposal is presented, please use "num1" (e.g., `teamABC_prop1_MVC27_sim.slx`). 
 - **Strategy .m file**: `meso_para.m` must be renamed as `nameTeam_numProp_meso_para.m` where "numProp" must identify the proposal number of the team. If only one proposal is presented, please use "num1" (e.g., `teamABC_prop1_meso_para.m`). 
 - **ZIP file**: Backup simulation package of the proposed solution. Create a ZIP file including the following files: `main.m`, `sim_para.m`, `nameTeam_numProp_meso_para.m`, `driving_condition.m`, `LambdaMethod.m`, `sim_result_plot.m`, `scoring.m`, `nameTeam_numProp_MVC27_Sim.slx`. 
