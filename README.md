@@ -1,6 +1,9 @@
 # IEEE VTS Motor Vehicle Challenge 2027 (MVC2027)
+
 Repository of the 2027 IEEE VTS Motor Vehicle Challenge (MVC): **"Management of Energy Efficiency and Safety Operation for Multi-Actuated Ground Vehicles on DWPT Road"**. 
 <img width="1536" height="1024" alt="img_flyer" src="https://github.com/user-attachments/assets/a4beb9bc-bde7-4678-9b4c-017252d9bcb4" />
+
+**[Official Website](https://vtsociety.org/event/workshop/ieee-vts-motor-vehicles-challenge-2027#description)**
 
 ## Introduction
 
