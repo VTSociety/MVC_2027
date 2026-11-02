@@ -61,7 +61,7 @@ In order to evaluate each proposal, the teams must submit in the [submission for
 
 Participants are allowed to reduce the total driving torque, i.e.  $\sum T_i \neq T_{all}$.  
 
-For instance, participant might develop a “Torque reduction algorithm”...
+For instance, participant might develop a *Torque reduction algorithm* that detects when the vehicle enters the low friction region and adjusts $T_{all}$ to $\tilde{T}_{all}$. Then, $\tilde{T}_{all}$ is distributed among four wheels using torque distribution ratios $k_i$.  
 
 </details>
  
