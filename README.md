@@ -55,6 +55,9 @@ In order to evaluate each proposal, the teams must submit in the [submission for
 
 *Please avoid spaces and special characters in all file names.*
 
+## FAQ
+Participants are allowed to reduce the total driving torque, i.e. $x$ $\sum T_i \neq T_{all}$.
+
 ## Bibliography
 
 Bibliography and related material is included in the [MATERIAL](https://github.com/VTSociety/MVC_2027/tree/main/MATERIAL) folder.
