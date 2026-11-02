@@ -41,7 +41,7 @@ Important rules that the submitted proposals must satisfy for being considered v
 Remarks:
 - Please review the [FAQ](https://github.com/VTSociety/MVC_2027#frequently-asked-questions-faq) section for further details.
 
-- Please take notice of the [Discussion board](https://github.com/VTSociety/MVC_2027/discussions/categories/q-a) for Q&A. Start a new discussion if you can't find an answer to your issue.
+- If you have any further questions, we invite you to use the Q&A section in the [Discussion board](https://github.com/VTSociety/MVC_2027/discussions/categories/q-a). Please, start a new discussion if you can't find an answer to your issue.
 
 
 ## What has to be uploaded for evaluation
