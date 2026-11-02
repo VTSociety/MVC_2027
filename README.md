@@ -56,7 +56,15 @@ In order to evaluate each proposal, the teams must submit in the [submission for
 *Please avoid spaces and special characters in all file names.*
 
 ## FAQ
-Participants are allowed to reduce the total driving torque, i.e. $x$ $\sum T_i \neq T_{all}$.
+<details>
+<summary><b>1. Is it permissible to reduce the total torque?</b></summary>
+
+Participants are allowed to reduce the total driving torque, i.e.  $\sum T_i \neq T_{all}$.  
+
+For instance, participant might develop a “Torque reduction algorithm”...
+
+</details>
+ 
 
 ## Bibliography
 
