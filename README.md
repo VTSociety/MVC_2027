@@ -39,7 +39,7 @@ Important rules that the submitted proposals must satisfy for being considered v
 6. A proposed strategy will be disqualified if the vehicle fails to complete either driving cycle (e.g., the vehicle stops before reaching the end of the driving cycle), or if the lateral position of the vehicle exceeds 5 m at any time during the simulation.
 
 Remarks:
-- Please review the [FAQ](https://github.com/VTSociety/MVC_2027/tree/test_faq#frequently-asked-questions-faq) section for further details.
+- Please review the [FAQ](https://github.com/VTSociety/MVC_2027#frequently-asked-questions-faq) section for further details.
 
 - Please take notice of the [Discussion board](https://github.com/VTSociety/MVC_2027/discussions/categories/q-a) for Q&A. Start a new discussion if you can't find an answer to your issue.
 
