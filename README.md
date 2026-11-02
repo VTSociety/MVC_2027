@@ -38,7 +38,9 @@ Important rules that the submitted proposals must satisfy for being considered v
 5. The final score will be calculated as the average of the scores obtained using the example driving cycle and a secret driving cycle.
 6. A proposed strategy will be disqualified if the vehicle fails to complete either driving cycle (e.g., the vehicle stops before reaching the end of the driving cycle), or if the lateral position of the vehicle exceeds 5 m at any time during the simulation.
 
-Remark:
+Remarks:
+- Please review the [FAQ](https://github.com/VTSociety/MVC_2027/blob/test_faq/README.md#faq) section for further details.
+
 - Please take notice of the [Discussion board](https://github.com/VTSociety/MVC_2027/discussions/categories/q-a) for Q&A. Start a new discussion if you can't find an answer to your issue.
 
 
@@ -54,6 +56,40 @@ In order to evaluate each proposal, the teams must submit in the [submission for
   - Please note the ZIP file is only a backup. Evaluation will mainly be based on the individual submitted files.
 
 *Please avoid spaces and special characters in all file names.*
+
+## Frequently Asked Questions (FAQ)
+<details>
+<summary><b>1. Is it permissible to reduce the total torque?</b></summary>
+
+Yes, participants are allowed to reduce the total driving torque, i.e.  $`\sum T^*_i \neq T^*_{all}`$.  
+
+For instance, participant might develop a *Torque reduction algorithm* that detects when the vehicle enters the low friction region and adjusts $T^*_{all}$ to $`\tilde{T}^*_{all}`$. Then, $`\tilde{T}^*_{all}`$ is distributed among four wheels using torque distribution ratios $k_i$.  
+
+<img width="1476" height="878" alt="image" src="https://github.com/user-attachments/assets/f506d128-c775-4b99-a2e2-2fb60c2ce81f" />
+
+
+</details>
+
+<details>
+<summary><b>2. Will the location of the DWPT zone remain the same in the secret scoring cycle?</b></summary>
+  
+Not necessarily. The location of the DWPT zone in the secret test cycle may differ from that in the example driving cycle. Participants should therefore not assume that the DWPT zone will always be located between 500 m and 1500 m.
+</details>
+
+<details>
+<summary><b>3. Will the simulation time and the total distance remain the same in the secret scoring cycle?</b></summary>
+  
+The exact simulation duration `Sim.Tsim` and the length of the scoring cycle will remain confidential. However, it will correspond to the time required for an electric vehicle to travel from the University of Tokyo's Kashiwa Campus to Kashiwanoha-campus Station in Kashiwa City, Chiba Prefecture, Japan.
+</details>
+
+<details>
+<summary><b>4. Is it allowed to use an additional signal in the proposed strategy, beyond the 12 sensor signals?</b></summary>
+  
+No, participants are allowed to use only the 12 provided sensor signals to develop their control algorithms. 
+
+However, participants are encouraged to develop estimation algorithms using these limited sensor signals to estimate unknown variables and conditions, such as the friction coefficient, disturbances caused by lateral wind forces, or vertical loads at each wheel.
+</details>
+ 
 
 ## Bibliography
 
