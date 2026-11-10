@@ -32,11 +32,12 @@ Participants are therefore invited to develop an integrated strategy that coordi
 Important rules that the submitted proposals must satisfy for being considered valid in this competition:
 
 1. The MATLAB/Simulink version used for the submitted files must be **R2022b**.
-2. Participants are allowed to modify only the `meso_para.m` script and the “Energy Management & Motion Control Strategy” block provided in the simulation file.
+2. Participants are allowed to modify only the `meso_para.m` script and the “Energy Management & Motion Control Strategy” block provided in the simulation file. The current parameters are provided only as examples. Participants are free to modify the control gains or develop alternative methods for **steering angle control**, **torque distribution**, and **d-axis current control**.
 3. All parameters provided in `sim_para.m`, as well as all sensor measurements available from the output of the “Vehicle Dynamics Model” block, may be used to develop the control strategy.
-4. All other scripts and simulation blocks must not be modified. Any modifications made to scripts other than `meso_para.m` or to subsystems other than “Energy Management & Motion Control Strategy” will be discarded during the evaluation.
-5. The final score will be calculated as the average of the scores obtained using the example driving cycle and a secret driving cycle.
-6. A proposed strategy will be disqualified if the vehicle fails to complete either driving cycle (e.g., the vehicle stops before reaching the end of the driving cycle), or if the lateral position of the vehicle exceeds 5 m at any time during the simulation.
+4. The proposed strategy must not directly access information and parameters defined in `LambdaMethod.m` and `driving_condition.m` files. The strategy may use only the parameters explicitly permitted by the rules and the available sensor measurements to estimate/predict the unknown parameters.
+5. All other scripts and simulation blocks must not be modified. Any modifications made to scripts other than `meso_para.m` or to subsystems other than “Energy Management & Motion Control Strategy” will be discarded during the evaluation.
+6. The final score will be calculated as the average of the scores obtained using the example driving cycle and a secret driving cycle.
+7. A proposed strategy will be disqualified if the vehicle fails to complete either driving cycle (e.g., the vehicle stops before reaching the end of the driving cycle), or if the lateral position of the vehicle exceeds 5 m at any time during the simulation.
 
 Remarks:
 - Please review the [FAQ](https://github.com/VTSociety/MVC_2027#frequently-asked-questions-faq) section for further details.
