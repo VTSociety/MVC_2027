@@ -38,6 +38,21 @@ Important rules that the submitted proposals must satisfy for being considered v
 5. All other scripts and simulation blocks must not be modified. Any modifications made to scripts other than `meso_para.m` or to subsystems other than “Energy Management & Motion Control Strategy” will be discarded during the evaluation.
 6. The final score will be calculated as the average of the scores obtained using the example driving cycle and a secret driving cycle.
 7. A proposed strategy will be disqualified if the vehicle fails to complete either driving cycle (e.g., the vehicle stops before reaching the end of the driving cycle), or if the lateral position of the vehicle exceeds 5 m at any time during the simulation.
+8. For each driving cycle, the score will be calculated as the sum of the scores obtained under the following driving conditions:
+    - Condition 1 `flag.wind = 0; flag.road = 0`: high friction surface without lateral wind disturbance
+    - Condition 2 `flag.wind = 1; flag.road = 0`: high friction surface with lateral wind disturbance
+    - Condition 3 `flag.wind = 0; flag.road = 1`: friction variation surface without lateral wind disturbance
+    - Condition 4 `flag.wind = 1; flag.road = 1`: friction variation surface with lateral wind disturbance
+    - The final score is calculated as the mean of the scores obtained with the example profile and with the secret profile, i.e.:
+  $`
+  \begin{aligned}  
+  \Phi_{\text{example}} &= \sum_{j=1}^{4} \Phi_{\text{example}(\textcolor{magenta}{\mathit{jth}}\text{condition})} \\
+  \Phi_{\text{secret}} &= \sum_{j=1}^{4} \Phi_{\text{secret}(\textcolor{magenta}{\mathit{jth}}\text{condition})} \\
+  \Phi_{\text{final}} &= \frac{\Phi_{\text{example}} + \Phi_{\text{secret}}}{2}
+  \end{aligned}
+  `$
+    
+    
 
 Remarks:
 - Please review the [FAQ](https://github.com/VTSociety/MVC_2027#frequently-asked-questions-faq) section for further details.
